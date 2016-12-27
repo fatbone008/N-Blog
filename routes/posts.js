@@ -38,7 +38,19 @@ router.post('/:postId/edit',checkLogin,function (req, res, next) {
 });
 
 //GET /posts/:postId/remove
-
 router.get('/:postId/remove',checkLogin,function (req, res, next) {
     res.send(req.flash());
 });
+
+//POST /posts/:postId/comment
+router.post('/:postId/comment',checkLogin,function (req, res, next) {
+    res.send(req.flash());
+});
+
+
+// GET /posts/:postId/comment/:commentId/remove 删除一条留言
+router.get('/:postId/comment/:commentId/remove', checkLogin, function(req, res, next) {
+    res.send(req.flash());
+});
+
+module.exports = router;
