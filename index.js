@@ -30,8 +30,19 @@ app.use(session({
         url: config.mongodb// mongodb 地址
     })
 }));
-// flash 中间价，用来显示通知
+// flash 中间件，用来显示通知
 app.use(flash());
+
+app.locals.blog = {
+    title: name,
+    description: pkg.description,
+}
+
+app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
+    res.locals.success = req.flash('success').toString();
+    res.locals.error = req.flash('error').toString();
+});
 
 // 路由
 routes(app);
