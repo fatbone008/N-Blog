@@ -33,6 +33,11 @@ app.use(session({
 // flash 中间件，用来显示通知
 app.use(flash());
 
+app.use(require('express-formidable')({
+    uploadDir:path.join(__dirname,'public/img'),//上传文件目录
+    keepExtensions:ture //保留后缀
+}))
+
 app.locals.blog = {
     title: name,
     description: pkg.description,

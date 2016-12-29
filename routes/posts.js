@@ -9,7 +9,7 @@ var checkLogin = require('../middlewares/check').checkLogin;
 //GET /posts article pages for users or specific users.
 //  eg: GET /posts?author=xxx
 router.get('/',function (req, res, next) {
-    res.send(req.flash());
+    res.render('posts');
 });
 
 //POST /posts post an article
