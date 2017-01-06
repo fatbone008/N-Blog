@@ -6,8 +6,6 @@ var path = require('path');
 var sha1 = require('sha1');
 var express = require('express');
 var router = express.Router();
-var express = require('express');
-var router = express.Router();
 
 var UserModel = require('../models/users');
 var checkNotLogin = require('../middlewares/check').checkNotLogin;
@@ -26,6 +24,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
     var password = req.fields.password;
     var repassword = req.fields.repassword;
 
+    console.log('已经接受到提交的注册信息。');
     try{
         if(!(name.length >= 1 && name.length <= 10)){
             throw new Error('名字请限制在1-10个字符内');
@@ -49,6 +48,8 @@ router.post('/', checkNotLogin, function(req, res, next) {
         return res.redirect('/signup');
     }
 
+    console.log('信息校验完成。');
+
     password = sha1(password);
 
     var user = {
@@ -59,6 +60,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
         avatar:avatar,
     };
 
+    console.log('信息准备入库。');
     UserModel.create(user)
         .then(function (result) {
             //此user时插入mongodb 后的值，包含_id

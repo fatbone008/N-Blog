@@ -1,7 +1,7 @@
 {
-  "name": "myblog",
+  "name": "Fat-Bone`s Blog",
   "version": "1.0.0",
-  "description": "my second blog",
+  "description": "He is a FAT(not that fat) guy, who coding with javascript, and play ukulele as well.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
