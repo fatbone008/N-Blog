@@ -49,5 +49,20 @@ module.exports = {
         return Post
             .update({_id:postId},{$inc:{pv:1}})
             .exec();
+    },
+
+    getRawPostById:function (postId) {
+        return Post
+            .findOne({_id:postId})
+            .populate({path:'author',model:'User'})
+            .exec();
+    },
+
+    updatePostById:function (postId,author,data) {
+        return Post.update({author:author,_id:postId},{$set:data}).exec();
+    },
+
+    removePostById:function (postId, author) {
+        return Post.remove({author:author,_id:postId}).exec();
     }
 }
