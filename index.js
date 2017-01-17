@@ -80,10 +80,10 @@ app.use(expressWinston.errorLogger({
             colorize:true,
         }),
         new (winston.transports.File)({
-            fileName:'logs/error.log'
+            filename:'logs/error.log'
         })
     ]
-}))
+}));
 
 app.use(function (err, req, res, next) {
     res.render('error',{
@@ -92,6 +92,15 @@ app.use(function (err, req, res, next) {
 });
 
 // 监听端口，启动程序
-app.listen(config.port, function () {
-    console.log(pkg.name + ' listening on port ' + config.port);
-});
+// app.listen(config.port, function () {
+//     console.log(pkg.name + ' listening on port ' + config.port);
+// });
+
+if (module.parent) {
+    module.exports = app;
+} else {
+    // 监听端口，启动程序
+    app.listen(config.port, function () {
+        console.log(`${pkg.name} listening on port ${config.port}`);
+    });
+}

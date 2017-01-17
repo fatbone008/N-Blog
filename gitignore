@@ -1,5 +1,5 @@
 config/*
 !config/default.*
 npm-debug.log
-node_module
+node_modules
 coverage
